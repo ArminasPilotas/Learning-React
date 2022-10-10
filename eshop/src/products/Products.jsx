@@ -1,9 +1,11 @@
+import Counter from "../common/components/Counter";
+
 function Products() {
   return (
     <div>
-      My Products Page
+      <Counter />
     </div>
-  )
+  );
 }
 
 export default Products;
