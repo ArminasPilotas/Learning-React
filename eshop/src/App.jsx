@@ -11,7 +11,7 @@ function App() {
       </header>
       <main className="p-2">
         <Switch>
-          <Route path="/products">
+          <Route path="/">
             <Products />
           </Route>
           <Route path="/vision">

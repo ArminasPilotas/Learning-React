@@ -12,7 +12,7 @@ function Counter() {
   }
 
   function handleInput(event) {
-    setCount(parseInt(event.target.value));
+    setCount(event.target.valueAsNumber);
   }
 
   return (
