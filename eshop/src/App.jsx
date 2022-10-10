@@ -1,8 +1,25 @@
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import NavBar from "./nav-bar/NavBar";
+import Products from "./products/Products";
+import Vision from "./vision/Vision";
+
 function App() {
   return (
-    <div className="bg-indigo-100">
-      My App
-    </div>
+    <Router>
+      <header>
+        <NavBar />
+      </header>
+      <main>
+        <Switch>
+          <Route path="/products">
+            <Products />
+          </Route>
+          <Route path="/vision">
+            <Vision />
+          </Route>
+        </Switch>
+      </main>
+    </Router>
   );
 }
 
