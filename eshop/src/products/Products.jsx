@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import Card from "../common/components/Card";
+import ProductCard from "./components/ProductCard";
 
 function Products() {
   const [products, setProducts] = useState([]);
@@ -16,21 +18,7 @@ function Products() {
   return (
     <ul className="flex flex-wrap">
       {products.map((x) => (
-        <li key={x.id} className="p-2">
-          <div className="w-64 h-80 bg-white border shadow rounded p-2">
-            <div className="h-3/4 p-4">
-              <img
-                className="max-h-full m-auto"
-                src={x.image}
-                alt={x.title}
-              ></img>
-            </div>
-
-            <div className="text-center font-semibold truncate" title={x.title}>{x.title}</div>
-
-            <div className="text-center">{x.price}$</div>
-          </div>
-        </li>
+        <ProductCard key={x.id} image={x.image} title={x.title} price={x.price} />
       ))}
     </ul>
   );
