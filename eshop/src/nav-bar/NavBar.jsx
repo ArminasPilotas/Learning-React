@@ -3,6 +3,7 @@ import NavItem from "./components/NavItem";
 const navItems = [
   { text: "PRODUCTS", route: "/" },
   { text: "VISION", route: "/vision" },
+  { text: "CONTACT", route: "/contact"},
 ];
 
 function NavBar() {
@@ -10,7 +11,7 @@ function NavBar() {
     <nav className="bg-blue-400">
       <ui className="flex">
         {navItems.map((x) => (
-          <NavItem {...x} />
+          <NavItem key={x.route} {...x} />
         ))}
       </ui>
     </nav>
