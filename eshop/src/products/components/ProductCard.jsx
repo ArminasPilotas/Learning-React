@@ -1,6 +1,7 @@
 import Card from "../../common/components/Card";
+import { Link } from "react-router-dom";
 
-function ProductCard({ image, title, price }) {
+function ProductCard({ id, image, title, price }) {
   return (
     <li className="p-2">
       <Card className="w-64 h-80" isRound>
@@ -13,6 +14,8 @@ function ProductCard({ image, title, price }) {
         </div>
 
         <div className="text-center">{price}$</div>
+
+        <Link to={`/product/${id}`}>VIEW</Link>
       </Card>
     </li>
   );
