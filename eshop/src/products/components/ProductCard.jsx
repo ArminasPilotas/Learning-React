@@ -1,11 +1,11 @@
 import Card from "../../common/components/Card";
-import { Link } from "react-router-dom";
+import Button from "../../common/components/Button";
 
 function ProductCard({ id, image, title, price }) {
   return (
     <li className="p-2">
       <Card className="w-64 h-80" isRound>
-        <div className="h-3/4 p-4">
+        <div className="h-3/4 p-4 flex">
           <img className="max-h-full m-auto" src={image} alt={title}></img>
         </div>
 
@@ -15,7 +15,9 @@ function ProductCard({ id, image, title, price }) {
 
         <div className="text-center">{price}$</div>
 
-        <Link to={`/product/${id}`}>VIEW</Link>
+        <div className="flex justify-center">
+          <Button to={`/product/${id}`}>VIEW</Button>
+        </div>
       </Card>
     </li>
   );
