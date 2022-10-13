@@ -9,36 +9,42 @@ import Button from "../common/components/Button";
 function Product() {
   const { id } = useParams();
   const [product, setProduct] = useState();
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const fetchProduct = async () => {
+      setIsLoading(true);
       const { data } = await axios(getProduct(id));
 
+      setIsLoading(false);
       setProduct(data);
     };
 
     fetchProduct();
   }, [id]);
 
-  console.log(product);
+  if (isLoading || !product) {
+    return <div>IM LOADING</div>;
+  }
+
   return (
     <div className="flex m-auto" style={{ maxWidth: 1000 }}>
       <div className="flex-1 pl-2 pr-8">
         <Card>
-          <img src={product?.image} alt={product?.title} />
+          <img src={product.image} alt={product.title} />
         </Card>
       </div>
 
       <div className="flex-1 pr-2 pl-8">
-        <h1 className="text-2xl font-semibold mb-4">{product?.title}</h1>
+        <h1 className="text-2xl font-semibold mb-4">{product.title}</h1>
 
-        <div className="text-3xl font-bold mb-4">{product?.price}$</div>
+        <div className="text-3xl font-bold mb-4">{product.price}$</div>
 
-        <p className="mb-4">{product?.description}</p>
+        <p className="mb-4">{product.description}</p>
 
         <div className="font-semibold mb-2">Quantity</div>
 
-        <Counter />
+        <Counter className="mb-4" />
 
         <Button>ADD TO CARD</Button>
       </div>

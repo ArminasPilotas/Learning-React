@@ -1,19 +1,27 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import ProductCard from "./components/ProductCard";
-import { getProducts} from '../common/requests';
+import { getProducts } from "../common/requests";
 
 function Products() {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState();
+  const [isLoading, setIsLoading] = useState(false);
+
   useEffect(() => {
     const fetchProducts = async () => {
-      const {data} = await axios(getProducts);
+      setIsLoading(true);
+      const { data } = await axios(getProducts);
 
+      setIsLoading(false);
       setProducts(data);
     };
 
     fetchProducts();
   }, []);
+
+  if (isLoading || !products) {
+    return <div>IM LOADING</div>;
+  }
 
   return (
     <ul className="flex flex-wrap">
