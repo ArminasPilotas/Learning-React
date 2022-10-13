@@ -1,4 +1,8 @@
 import { useState } from "react";
+import Button from "./Button";
+
+const btnClasses =
+  "font-bold transform scale-125 hover:-translate-y-0.5 active:translate-y-0.5 transition";
 
 function Counter() {
   const [count, setCount] = useState(1);
@@ -17,9 +21,18 @@ function Counter() {
 
   return (
     <div>
-      <button onClick={handleDecrement}>-</button>
-      <input type="number" value={count} onChange={handleInput} />
-      <button onClick={handleIncrement}>+</button>
+      <Button className={btnClasses} onClick={handleDecrement}>
+        -
+      </Button>
+      <input
+        className="outline-none p-2 w-10"
+        type="number"
+        value={count}
+        onChange={handleInput}
+      />
+      <Button className={btnClasses} onClick={handleIncrement}>
+        +
+      </Button>
     </div>
   );
 }
