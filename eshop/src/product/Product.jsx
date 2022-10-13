@@ -25,7 +25,7 @@ function Product() {
   }, [id]);
 
   if (isLoading || !product) {
-    return <Spinner />;
+    return <Spinner text="Fetching product info" />;
   }
 
   return (

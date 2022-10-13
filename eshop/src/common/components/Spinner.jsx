@@ -1,9 +1,10 @@
 import { ReactComponent as SpinIcon } from "../assets/spin.svg";
 
-function Spinner() {
+function Spinner({ text = "Loading" }) {
   return (
-    <div>
+    <div className="h-full flex flex-col items-center justify-center">
       <SpinIcon />
+      <div className="mt-1 font-semibold">{text}</div>
     </div>
   );
 }
