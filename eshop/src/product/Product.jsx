@@ -11,7 +11,7 @@ import useCounter from "../common/hooks/useCounter";
 function Product() {
   const { id } = useParams();
   const { isLoading, data: product, call: getProductCall } = useApi();
-  const { call: addToCardCall } = useApi();
+  const { isLoading: isAddToCardLoading, call: addToCardCall } = useApi();
   const counterProps = useCounter();
 
   useEffect(() => {
@@ -45,8 +45,12 @@ function Product() {
 
         <Counter className="mb-4" {...counterProps} />
 
-        <Button type="primary" onClick={handleAddToCard()}>
-          ADD TO CARD
+        <Button
+          type="primary"
+          disabled={isAddToCardLoading}
+          onClick={handleAddToCard()}
+        >
+          {isAddToCardLoading ? "ADDING TO CARD" : "ADD TO CARD"}
         </Button>
       </div>
     </div>
