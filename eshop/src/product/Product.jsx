@@ -1,27 +1,18 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getProduct } from "../common/requests";
 import Card from "../common/components/Card";
 import Counter from "../common/components/Counter";
 import Button from "../common/components/Button";
 import Spinner from "../common/components/Spinner";
+import useApi from "../common/hooks/useAPI";
 
 function Product() {
   const { id } = useParams();
-  const [product, setProduct] = useState();
-  const [isLoading, setIsLoading] = useState(false);
+  const { isLoading, data: product, call } = useApi();
 
   useEffect(() => {
-    const fetchProduct = async () => {
-      setIsLoading(true);
-      const { data } = await axios(getProduct(id));
-
-      setIsLoading(false);
-      setProduct(data);
-    };
-
-    fetchProduct();
+    call(getProduct(id));
   }, [id]);
 
   if (isLoading || !product) {
