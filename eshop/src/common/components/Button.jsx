@@ -1,15 +1,20 @@
 import clsx from "clsx";
 import { Link } from "react-router-dom";
 
-const defaultClasses =
+const typeClassMap = {
+  default: "text-blue-400 hover: bg-grey-100",
+  primary: "bg-blue-400 text-white hover:bg-blue-500",
+};
+
+const initialClasses =
   "text-blue-400 hover: bg-grey-100 p-1 focus:outline-none rounded";
 
-function Button({ children, className, to, onClick }) {
+function Button({ children, className, to, type = "default", onClick }) {
   if (to) {
     return (
       <Link
         to={to}
-        className={clsx(defaultClasses, className)}
+        className={clsx(initialClasses, typeClassMap[type], className)}
         onClick={onClick}
       >
         {children}
@@ -17,7 +22,7 @@ function Button({ children, className, to, onClick }) {
     );
   }
   return (
-    <button className={clsx(defaultClasses, className)} onClick={onClick}>
+    <button className={clsx(initialClasses, className)} onClick={onClick}>
       {children}
     </button>
   );

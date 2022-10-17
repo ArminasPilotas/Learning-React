@@ -47,7 +47,7 @@ function Product() {
 
         <Counter className="mb-4" />
 
-        <Button>ADD TO CARD</Button>
+        <Button type="primary">ADD TO CARD</Button>
       </div>
     </div>
   );
