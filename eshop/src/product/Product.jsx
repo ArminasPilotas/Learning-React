@@ -1,19 +1,26 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { getProduct } from "../common/requests";
+import { addToCard, getProduct } from "../common/requests";
 import Card from "../common/components/Card";
 import Counter from "../common/components/Counter";
 import Button from "../common/components/Button";
 import Spinner from "../common/components/Spinner";
 import useApi from "../common/hooks/useAPI";
+import useCounter from "../common/hooks/useCounter";
 
 function Product() {
   const { id } = useParams();
-  const { isLoading, data: product, call } = useApi();
+  const { isLoading, data: product, call: getProductCall } = useApi();
+  const { call: addToCardCall } = useApi();
+  const counterProps = useCounter();
 
   useEffect(() => {
-    call(getProduct(id));
+    getProductCall(getProduct(id));
   }, [id]); //eslint-disable-line
+
+  function handleAddToCard() {
+    addToCardCall(addToCard(id, counterProps.count));
+  }
 
   if (isLoading || !product) {
     return <Spinner text="Fetching product info" />;
@@ -36,9 +43,11 @@ function Product() {
 
         <div className="font-semibold mb-2">Quantity</div>
 
-        <Counter className="mb-4" />
+        <Counter className="mb-4" {...counterProps} />
 
-        <Button type="primary">ADD TO CARD</Button>
+        <Button type="primary" onClick={handleAddToCard()}>
+          ADD TO CARD
+        </Button>
       </div>
     </div>
   );
