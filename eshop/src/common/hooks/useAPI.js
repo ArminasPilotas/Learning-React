@@ -1,21 +1,23 @@
 import { useState } from "react";
 import axios from "axios";
 
+const initialState = {
+  isLoading: false,
+  data: null,
+};
+
 function useApi() {
-  const [isLoading, setIsLoading] = useState(false);
-  const [data, setData] = useState();
+  const [state, setState] = useState(initialState);
 
   async function call(request) {
-    setIsLoading(true);
+    setState((prev) => ({ ...prev, isLoading: true }));
     const { data } = await axios(request);
 
-    setIsLoading(false);
-    setData(data);
+    setState({ data, isLoading: false });
   }
 
   return {
-    isLoading,
-    data,
+    ...state,
     call,
   };
 }

@@ -13,7 +13,7 @@ function Product() {
 
   useEffect(() => {
     call(getProduct(id));
-  }, [id]);
+  }, [id]); //eslint-disable-line
 
   if (isLoading || !product) {
     return <Spinner text="Fetching product info" />;
