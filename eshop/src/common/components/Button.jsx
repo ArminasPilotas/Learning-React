@@ -8,7 +8,7 @@ const typeClassMap = {
 
 const disabledClasses = "cursor-default bg-gray-300 text-gray-400";
 const initialClasses =
-  "text-blue-400 hover: bg-grey-100 p-1 focus:outline-none rounded";
+  "text-blue-400 hover: bg-grey-100 p-1 focus:outline-none rounded font-semibold";
 
 function Button({
   children,

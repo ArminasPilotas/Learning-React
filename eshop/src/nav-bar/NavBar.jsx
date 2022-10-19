@@ -1,9 +1,10 @@
+import CartNavItem from "./components/CartNavItem";
 import NavItem from "./components/NavItem";
 
 const navItems = [
-  { text: "PRODUCTS", route: "/" },
-  { text: "VISION", route: "/vision" },
-  { text: "CONTACT", route: "/contact"},
+  { content: "PRODUCTS", route: "/" },
+  { content: "VISION", route: "/vision" },
+  { content: "CONTACT", route: "/contact" },
 ];
 
 function NavBar() {
@@ -13,6 +14,7 @@ function NavBar() {
         {navItems.map((x) => (
           <NavItem key={x.route} {...x} />
         ))}
+        <CartNavItem />
       </ui>
     </nav>
   );
