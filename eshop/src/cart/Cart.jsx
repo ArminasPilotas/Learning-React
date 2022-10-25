@@ -5,7 +5,7 @@ function Cart() {
   return (
     <div className="m-auto" style={{ maxWidth: 500 }}>
       <FormControl htmlFor="full-name" label="Full Name">
-        <Input id="full-name" />
+        <Input id="full-name" shouldFocus />
       </FormControl>
 
       <FormControl htmlFor="address" label="Address">
