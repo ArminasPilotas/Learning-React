@@ -12,7 +12,9 @@ function CartProvider({ children }) {
   }, []); //eslint-disable-line
 
   return (
-    <CartContext.Provider value={{ cart: data }}>
+    <CartContext.Provider
+      value={{ cart: data, refreshData: () => call(getCart) }}
+    >
       {children}
     </CartContext.Provider>
   );
