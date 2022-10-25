@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { render, unmountComponentAtNode } from "react-dom";
 
 const notificationContainer = document.getElementById("notification");
@@ -13,16 +13,31 @@ const typeClassMap = {
 };
 
 const initialClasses =
-  "text-white font-semibold fixed bottom-3 right-3 p-3 z-50 shadow animate-slide-in";
+  "text-white font-semibold fixed bottom-3 right-3 p-3 z-50 shadow animate-slide-in cursor-pointer";
 
 function Notification({ text, type, hangTimeInMs = 3000 }) {
+  const [timeoutId, setTimeoutId] = useState();
   useEffect(() => {
-    setTimeout(() => {
+    const timeoutId = setTimeout(() => {
       unmountComponentAtNode(notificationContainer);
     }, hangTimeInMs);
+
+    setTimeoutId(setTimeoutId);
   }, []); //eslint-disable-line
 
-  return <div className={clsx(initialClasses, typeClassMap[type])}>{text}</div>;
+  function handleClick() {
+    clearTimeout(timeoutId);
+    unmountComponentAtNode(notificationContainer);
+  }
+
+  return (
+    <div
+      className={clsx(initialClasses, typeClassMap[type])}
+      onClick={handleClick}
+    >
+      {text}
+    </div>
+  );
 }
 
 export function renderNotification(props) {}
