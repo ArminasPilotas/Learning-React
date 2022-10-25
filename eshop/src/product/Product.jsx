@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { addToCard, getProduct } from "../common/requests";
+import { addToCart, getProduct } from "../common/requests";
 import Card from "../common/components/Card";
 import Counter from "../common/components/Counter";
 import Spinner from "../common/components/Spinner";
@@ -20,7 +20,7 @@ function Product() {
   }, [id]); //eslint-disable-line
 
   async function handleAddToCard() {
-    await addToCardCall(addToCard(id, counterProps.count));
+    await addToCardCall(addToCart(id, counterProps.count));
 
     notification.success({ text: "Product added to card" });
   }

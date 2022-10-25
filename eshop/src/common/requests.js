@@ -10,8 +10,10 @@ export const getProduct = (id) => ({
   method: "GET",
 });
 
-export const addToCard = (productId, quantity) => ({
-  url: `${fakeStoreApiUrl}/cards`,
+export const addToCart = (productId, quantity) => ({
+  url: `${fakeStoreApiUrl}/carts`,
   method: "POST",
   data: { userId: 1, products: [{ productId, quantity }] },
 });
+
+export const getCart = { url: `${fakeStoreApiUrl}/carts/5`, method: "GET" };
