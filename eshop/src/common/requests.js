@@ -17,3 +17,5 @@ export const addToCart = (productId, quantity) => ({
 });
 
 export const getCart = { url: `${fakeStoreApiUrl}/carts/5`, method: "GET" };
+
+export const getUser = { url: `${fakeStoreApiUrl}/users/1`, method: "GET" };
