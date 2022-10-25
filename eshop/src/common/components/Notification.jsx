@@ -2,6 +2,7 @@ import clsx from "clsx";
 import { useEffect, useState } from "react";
 import { render, unmountComponentAtNode } from "react-dom";
 
+const unmountDelay = 200;
 const notificationContainer = document.getElementById("notification");
 export const notificationTypes = {
   SUCCESS: "success",
@@ -13,26 +14,37 @@ const typeClassMap = {
 };
 
 const initialClasses =
-  "text-white font-semibold fixed bottom-3 right-3 p-3 z-50 shadow animate-slide-in cursor-pointer";
+  "text-white font-semibold fixed bottom-3 right-3 p-3 z-50 shadow cursor-pointer";
 
 function Notification({ text, type, hangTimeInMs = 3000 }) {
   const [timeoutId, setTimeoutId] = useState();
+  const [isUnmounting, setIsUnmouting] = useState(false);
   useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      unmountComponentAtNode(notificationContainer);
-    }, hangTimeInMs);
+    const timeoutId = setTimeout(unmount, hangTimeInMs);
 
     setTimeoutId(setTimeoutId);
   }, []); //eslint-disable-line
 
+  function unmount() {
+    setIsUnmouting(true);
+
+    setTimeout(() => {
+      unmountComponentAtNode(notificationContainer);
+    }, unmountDelay);
+  }
+
   function handleClick() {
     clearTimeout(timeoutId);
-    unmountComponentAtNode(notificationContainer);
+    unmount();
   }
 
   return (
     <div
-      className={clsx(initialClasses, typeClassMap[type])}
+      className={clsx(
+        initialClasses,
+        typeClassMap[type],
+        isUnmounting ? "animate-slide-out" : "animate-slide-in"
+      )}
       onClick={handleClick}
     >
       {text}
