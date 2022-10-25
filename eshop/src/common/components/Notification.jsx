@@ -13,7 +13,7 @@ const typeClassMap = {
 };
 
 const initialClasses =
-  "text-white font-semibold fixed bottom-3 right-3 p-3 z-50 shadow";
+  "text-white font-semibold fixed bottom-3 right-3 p-3 z-50 shadow animate-slide-in";
 
 function Notification({ text, type, hangTimeInMs = 3000 }) {
   useEffect(() => {
