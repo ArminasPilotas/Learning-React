@@ -7,6 +7,7 @@ import Button from "../common/components/Button";
 import Spinner from "../common/components/Spinner";
 import useApi from "../common/hooks/useAPI";
 import useCounter from "../common/hooks/useCounter";
+import { notification } from "../common/components/Notification";
 
 function Product() {
   const { id } = useParams();
@@ -18,8 +19,10 @@ function Product() {
     getProductCall(getProduct(id));
   }, [id]); //eslint-disable-line
 
-  function handleAddToCard() {
-    addToCardCall(addToCard(id, counterProps.count));
+  async function handleAddToCard() {
+    await addToCardCall(addToCard(id, counterProps.count));
+
+    notification.success({ text: "Product added to card" });
   }
 
   if (isLoading || !product) {
