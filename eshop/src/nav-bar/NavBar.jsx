@@ -2,7 +2,8 @@ import CartNavItem from "./components/CartNavItem";
 import NavItem from "./components/NavItem";
 
 const navItems = [
-  { content: "PRODUCTS", route: "/" },
+  { content: "HOME", route: "/" },
+  { content: "PRODUCTS", route: "/products" },
   { content: "VISION", route: "/vision" },
   { content: "CONTACT", route: "/contact" },
 ];

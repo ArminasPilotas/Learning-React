@@ -6,6 +6,7 @@ import Vision from "./vision/Vision";
 import ContactUs from "./contact-us/ContactUs";
 import Cart from "./cart/Cart";
 import CartProvider from "./common/providers/CartProvider";
+import Home from "./home/Home";
 
 function App() {
   return (
@@ -16,7 +17,8 @@ function App() {
         </header>
         <main className="p-2" style={{ height: "calc(100vh - 48px" }}>
           <Switch>
-            <Route exact path={["/", "/products"]} component={Products} />
+            <Route exact path="/" component={Home} />
+            <Route exact path="/products" component={Products} />
             <Route exact path="/product/:id" component={Product} />
             <Route exact path="/vision" component={Vision} />
             <Route exact path="/contact" component={ContactUs} />
