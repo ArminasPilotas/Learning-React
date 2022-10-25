@@ -3,11 +3,11 @@ import { useParams } from "react-router-dom";
 import { addToCard, getProduct } from "../common/requests";
 import Card from "../common/components/Card";
 import Counter from "../common/components/Counter";
-import Button from "../common/components/Button";
 import Spinner from "../common/components/Spinner";
 import useApi from "../common/hooks/useAPI";
 import useCounter from "../common/hooks/useCounter";
 import { notification } from "../common/components/Notification";
+import AddToCardButton from "./components/AddToCardButton";
 
 function Product() {
   const { id } = useParams();
@@ -48,13 +48,10 @@ function Product() {
 
         <Counter className="mb-4" {...counterProps} />
 
-        <Button
-          type="primary"
-          disabled={isAddToCardLoading}
-          onClick={handleAddToCard()}
-        >
-          {isAddToCardLoading ? "ADDING TO CARD" : "ADD TO CARD"}
-        </Button>
+        <AddToCardButton
+          isLoading={isAddToCardLoading}
+          onClick={handleAddToCard}
+        />
       </div>
     </div>
   );
